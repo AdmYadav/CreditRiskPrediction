@@ -1,0 +1,249 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(initialize);
+      google.charts.setOnLoadCallback(initializePiechart);
+      google.charts.setOnLoadCallback(initializeLinechart);
+      google.charts.setOnLoadCallback(initializeStackedBarchart);
+      google.charts.setOnLoadCallback(initializeStackedTablechart);
+      google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
+
+      function initialize() {
+            var opts = { csvColumns: ['string', 'number'],
+                         csvHasHeader: true
+            };
+            var query = new google.visualization.Query('Barchart.csv', opts);
+            query.send(handleQueryResponse);
+        }
+        function handleQueryResponse(response) {
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data = response.getDataTable();
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            var options = {'chartArea': {'top':'20'},'legend': {'position': 'bottom'},'is3D': 'true'};
+            chart.draw(data,options);
+        }
+        
+        function initializePiechart() {
+            var opts1 = { csvColumns: ['string', 'number'],
+                         csvHasHeader: true
+            };
+            var query1 = new google.visualization.Query('PieChart.csv', opts1);
+            query1.send(handleQueryResponse1);
+        }
+  
+        function handleQueryResponse1(response) {
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data1 = response.getDataTable();
+            var chart1 = new google.visualization.PieChart(document.getElementById('Pie_div'));
+            var options = {'chartArea': {'height':'80%','top':'10'},'is3D': 'true'};
+            chart1.draw(data1,options);
+        }
+
+        
+        function initializeLinechart() {
+            var opts2 = { csvColumns: ['string', 'number'],
+                         csvHasHeader: true
+            };
+            var query2 = new google.visualization.Query('LineChart.csv', opts2);
+            query2.send(handleQueryResponse2);
+        }
+        function handleQueryResponse2(response) {
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data1 = response.getDataTable();
+            var chart1 = new google.visualization.LineChart(document.getElementById('Line_div'));
+            var options = {'chartArea': {'width': '80%','top':'10'},'legend': {'position': 'bottom'},'is3D': 'true'};
+            chart1.draw(data1,options);
+        }
+        
+        
+        function initializeStackedBarchart() {
+            var opts = { csvColumns: ['string', 'number','number'],
+                         csvHasHeader: true
+
+            };
+            var query = new google.visualization.Query('Stacked.csv', opts);
+            query.send(handleQueryResponse3);
+        }
+        function handleQueryResponse3(response) {
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data = response.getDataTable();
+            var chart = new google.visualization.BarChart(document.getElementById('Stacked_div'));
+            var options = {'legend': {'position': 'bottom'},'is3D': 'true','isStacked': 'true'};
+            chart.draw(data,options);
+        }
+        
+        
+        function initializeStackedTablechart() {
+            var opts = { csvColumns: ['string', 'number'],
+                         csvHasHeader: true
+
+            };
+            var query = new google.visualization.Query('Table.csv', opts);
+            query.send(handleQueryResponse4);
+        }
+        function handleQueryResponse4(response) {
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data = response.getDataTable();
+            var chart = new google.visualization.Table(document.getElementById('Table_div'));
+            var options = {'chartArea': {'width': '80%','top':'10'},'legend': {'position': 'bottom'},'is3D': 'true'};
+            chart.draw(data, {showRowNumber: true, width: '100%', height: '93%'});
+        }
+        
+      </script>
+         
+      
+  </head>
+
+
+
+
+<title id="iwlw">Assessment
+</title>
+<meta charset="utf-8" id="ipe7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" id="is2y"/>
+
+<link rel="stylesheet" href="style.css" id="iwsm"/>
+<link rel="stylesheet" href="main.css"/>
+<!--  the links above this are the links for the various csss used in the index.html this site uses d3js hence there is more links -->
+<Div class="polaroid" > 
+    <p><h1> Assessment <sub>-Submission by Ajit Yadav</sub></h1>
+  </Div>
+  <div>
+    <div id ="left"> 
+    <br>
+    <p class="Menu">Menu</p>
+    <ul class="left-ul">
+      <li class="left-li"><a class="active" href="#home">Home</a></li>
+      <li class="left-li"><a href="https://ajityadav.s3.us-east-1.amazonaws.com/index.html">Link to my home page </a></li><!-- link for the survey form-->
+      <li class="left-li"><a href="About Site">About Site</a></li>
+      <li class="left-li"><a href="Other">Other</a></li>
+    </ul>
+    </div>
+<div id="i8wlh">Bank Transactions Dashboard (Please refresh if charts not proper)
+</div>
+<div id="ier1k" class="row">
+  <div id="isbqr" class="cell">
+    <div id="ivdmt">1. Trend of Frauds over 24 hours of the Day 
+        <div id="Line_div"></div>
+    </div>
+  </div>
+  <div id="i2nve" class="cell">
+    <div id="iu9ym">2. Customers with Transaction Activities > 10000000
+        <div id="Table_div"></div>
+    </div>
+  </div>
+</div>
+<div id="iva1g" class="row">
+  <div id="igv5j" class="cell">
+    <div id="icwmq">3. Top 10 Customers with Highest Closing Balance
+        <div id="chart_div"></div>
+    </div>
+  </div>
+  <div id="i0d47" class="cell">
+    <div id="i7z2k">4 .Type of Transactions with Share Percentage
+        <div id="Pie_div"></div>
+    </div>
+  </div>
+</div>
+
+<div id="iva3g" class="row">
+  <div id="igv6j" class="cell">
+    <div id="icwmq1">5 .Relation between Customer to Customer and Customer to Merchant Transactions
+        <div id="Stacked_div"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="i8wlh" class="polaroid">
+  
+
+  <div><h2 id="paragraphs">Visualization Explanations<br></h2>
+    <p id="paragraphs"> 1. Trends of Fraud over 24 hour of a day.<br>
+      It was found that the lowest number of fraud happened at 19hrs in the last one month.
+    </p>
+    <p id="paragraphs"> 2. Top Customers with highest transaction activities.<br>
+      From 2rd bar gharph we see the customers with the transaction activities this data can be helpful in campaigns (only if ethical).
+    </p>
+    <p id="paragraphs"> 3. Top Customers with highest closing balance.<br>
+      From 3rd bar gharph we see the customes with the highest closing balacnce this data can be helpful in campaigns (only if ethical).
+    </p>
+    <p id="paragraphs"> 4. Type of Transaction with share percentage .<br>
+     We see that the highest transaction of money is from the transfer category at 42%</p>
+     <p id="paragraphs"> 5. Relation between Customer to Customer and Customer to Merchant Transactions.<br>
+      We see that the Customer to Customer transactions are way much higher than the Customer to Merchant Transactions.</p>
+  </div>
+  </div>
+
+
+
+  <div id="i8wlh" class="polaroid">
+  
+
+    <div><h2 id="paragraphs">Data mining Algorithms<br></h2>
+      <p id="paragraphs"> I used Naive Bayes and Decision tree for the predictions<br>
+        The steps are as follows:
+      </p>
+      <p id="paragraphs">Data cleaning and cleansing<br>
+        I did the Chi-square test for feature selection and found that some o fthe fieldds ever independent of the class fields
+         </p><br>
+         <img src="Chisquare test.png"> <br>
+        <p>Then after removing all the independent fileds the next step was of up sampling as the Dataset is heavily unbalanced</p>
+        <br>
+      <p id="paragraphs">Finally I ran the Decision Tree and Gaussian Naive Bayes<br>
+      Here are the outpute:<br>
+      <img src="Decision tree 5 depth.png"><br>
+      <img src="Decisiontree_classification_report_depth_5.JPG"><br>
+      <img src= "Gaussian_Naive_bayes.JPG"><br> 
+      </p>
+    </div>
+    </div>
+
+    <div id="i8wlh" class="polaroid">
+  
+
+      <div><h2 id="paragraphs">Issues with Dataset and My Assumptions<br></h2>
+        <p id="paragraphs"> The Dataset is Unbalanced<br>
+          There are nearly 8400 records for isFraud category when comparision with 6 million no Fraud category 
+        </p>
+        <p id="paragraphs">The is flagged Column is empty<br>
+          I believe that as the flagged filed is empty it houlds no value for the prediction or any visualization graphs
+           </p><br>
+
+        <p id="paragraphs"> Assumptions and suggestions<br>
+          Below are the Assumption I made:<br>
+          1. The steps denote every hour hence we can calculate the 24 hour cycle and then after group by on 24 hour cycle. we can get a monthly statistics of every hour.<br>
+          2. I considere the "C" as Customer generated Transaction and "M" as Merchant generated transactions<br>
+          3. I wanted to try hyper parameter tuning by changing the entropy to gini Index and also changing the depth of the tree but due to time constraint was not able to do it.
+          <br>
+          4. Also I wanted to work with Tableau but as it was not specified I can use any tool hence I stuck to native charts library.<br>
+        </p>
+      </div>
+      </div>
+
+
+
+
+</html>
