@@ -111,7 +111,90 @@
         }
         
       </script>
-         
+
+
+
+ <!--CASE 2 Script-->
+
+
+         <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(initializePiechart);
+      // Callback that creates and populates a data table,
+      // instantiates a dashboard, a range slider and a pie chart,
+      // passes in the data and draws it.
+       function initializePiechart() {
+            var opts1 = { csvColumns: ['string', 'string','number'],
+                         csvHasHeader: true
+            };
+            var query1 = new google.visualization.Query('case2.csv', opts1);
+            query1.send(drawDashboard);
+        }
+  
+      
+      function drawDashboard(response) {
+
+        // Create our data tabl
+            if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+            }
+            var data1 = response.getDataTable();
+        // Create a dashboard.
+        var dashboard = new google.visualization.Dashboard(
+            document.getElementById('dashboard_div'));
+
+        // Create a range slider, passing some options
+        var donutRangeSlider = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_div',
+          'options': {
+            'filterColumnLabel': 'Year'
+          }
+        });
+
+        // Create a pie chart, passing some options
+        var pieChart = new google.visualization.ChartWrapper({
+          'chartType': 'Bar',
+          'containerId': 'FilterBar',
+          'options': {'width': '40%','height': '40%','pieSliceText': 'value','legend': 'right'},'view': {'columns': [1, 2]}
+        
+        });
+	
+        var Line = new google.visualization.ChartWrapper({
+            'chartType': 'Table',
+            'containerId': 'FilterTable',
+            'options': {'width': '100%','height': '100%','pieSliceText': 'value','legend': 'right'},'view': {'columns': [1, 2]}
+          
+          });
+        
+        
+        // Establish dependencies, declaring that 'filter' drives 'pieChart',
+        // so that the pie chart will only display entries that are let through
+        // given the chosen slider range.
+       // dashboard.bind(donutRangeSlider, pieChart);
+        dashboard.bind(donutRangeSlider, [pieChart,Line]);
+
+        // Draw the dashboard.
+        dashboard.draw(data1);
+      }
+    </script>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
   </head>
 
@@ -126,7 +209,7 @@
 <link rel="stylesheet" href="style.css" id="iwsm"/>
 <link rel="stylesheet" href="main.css"/>
 <!--  the links above this are the links for the various csss used in the index.html this site uses d3js hence there is more links -->
-<Div class="polaroid" > 
+<Div id="i8wlh" class="polaroid" > 
     <p><h1> Assessment <sub>-Submission by Ajit Yadav</sub></h1>
   </Div>
   <div>
@@ -183,6 +266,7 @@
   <div><h2 id="paragraphs">Visualization Explanations<br></h2>
     <p id="paragraphs"> 1. Trends of Fraud over 24 hour of a day.<br>
       It was found that the lowest number of fraud happened at 19hrs in the last one month.
+      I was think like if this syetem gets populated with real time data we can have a llok at real time trend of frauds.
     </p>
     <p id="paragraphs"> 2. Top Customers with highest transaction activities.<br>
       From 2rd bar gharph we see the customers with the transaction activities this data can be helpful in campaigns (only if ethical).
@@ -191,7 +275,7 @@
       From 3rd bar gharph we see the customes with the highest closing balacnce this data can be helpful in campaigns (only if ethical).
     </p>
     <p id="paragraphs"> 4. Type of Transaction with share percentage .<br>
-     We see that the highest transaction of money is from the transfer category at 42%</p>
+     This graph shows the percentage share of eah transaction category.We see that the highest transaction of money is from the transfer category at 42%</p>
      <p id="paragraphs"> 5. Relation between Customer to Customer and Customer to Merchant Transactions.<br>
       We see that the Customer to Customer transactions are way much higher than the Customer to Merchant Transactions.</p>
   </div>
@@ -207,15 +291,21 @@
         The steps are as follows:
       </p>
       <p id="paragraphs">Data cleaning and cleansing<br>
-        I did the Chi-square test for feature selection and found that some o fthe fieldds ever independent of the class fields
+        I did the Chi-square test for feature selection and found that some of the fields were independent of the class field.
          </p><br>
          <img src="Chisquare test.png"> <br>
-        <p>Then after removing all the independent fileds the next step was of up sampling as the Dataset is heavily unbalanced</p>
+        <p>Then after removing all the independent fileds the next step was of up sampling as the Dataset is heavily unbalanced
+          <br>
+          I wanted to try SMOTE sampling but due to time constraints was not ale to try it.
+        </p>
         <br>
+        <img src= "isfraud.JPG"><br> 
       <p id="paragraphs">Finally I ran the Decision Tree and Gaussian Naive Bayes<br>
       Here are the outpute:<br>
       <img src="Decision tree 5 depth.png"><br>
+      Decision tree Classification Report:<br>
       <img src="Decisiontree_classification_report_depth_5.JPG"><br>
+       Gaussian_Naive_bayes Classification Report:<br>
       <img src= "Gaussian_Naive_bayes.JPG"><br> 
       </p>
     </div>
@@ -239,11 +329,34 @@
           3. I wanted to try hyper parameter tuning by changing the entropy to gini Index and also changing the depth of the tree but due to time constraint was not able to do it.
           <br>
           4. Also I wanted to work with Tableau but as it was not specified I can use any tool hence I stuck to native charts library.<br>
+          5. For case 2 I assumend the requirement was count of New customers and count of Lost customer<br>
+          6. In case 2 I assumed that in case of data for prior year as we dont have data for year before 2015. I have represented it as "0".<br>
+          
         </p>
       </div>
       </div>
 
 
+<div id="i8wlh">Case 2 (Please select any of the year filter and refresh if charts not proper)
+</div>
+<div id="ier1k" class="row">
+
+  <div id="isbqr" class="cell">
+    <div id="ivdmt">
+    1. Please select a filter from the drop box above...
+    <div id="filter_div"></div>
+        <div id="FilterBar"></div>
+    </div>
+  </div>
+</div>
+<div id="iva1g" class="row">
+  <div id="igv5j" class="cell">
+    <div id="icwmq">
+        <div id="FilterTable"></div>
+    </div>
+  </div>
+  
+</div>
 
 
 </html>
