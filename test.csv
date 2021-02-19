@@ -1,0 +1,31 @@
+Year,Name,Value
+2015,Existing Customer Growth,0
+2016,Existing Customer Growth,20335.46
+2017,Existing Customer Growth,20611.34
+2015,existing_cust_revenue_Current_year,7465117.12
+2016,existing_cust_revenue_Current_year,7485452.58
+2017,existing_cust_revenue_Current_year,2641259.99
+2015,existing_cust_revenue_Prior_year,0
+2016,existing_cust_revenue_Prior_year,7465117.12
+2017,existing_cust_revenue_Prior_year,7485452.58
+2015,Lost Customer this year,0
+2016,Lost Customer this year,-26648
+2017,Lost Customer this year,45341
+2015,Revenue Lost from attrition,0
+2016,Revenue Lost from attrition,21571632.07
+2017,Revenue Lost from attrition,23110294.94
+2015,New customer this year,0
+2016,New customer this year,145062
+2017,New customer this year,229028
+2015,New Customer Revenue,0
+2016,New Customer Revenue,18245491.01
+2017,New Customer Revenue,28776235.04
+2015,Total customer this year,231294
+2016,Total customer this year,204646
+2017,Total customer this year,249987
+2015,Total customer Prior year,0
+2016,Total customer Prior year,231294
+2017,Total customer Prior year,204646
+2015,Current Year Revenue,29036749.19
+2016,Current Year Revenue,25730943.59
+2017,Current Year Revenue,31417495.03
